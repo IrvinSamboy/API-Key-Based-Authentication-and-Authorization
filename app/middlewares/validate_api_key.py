@@ -2,7 +2,6 @@ from fastapi import FastAPI, Request
 from app.db.db import db
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
-from starlette.datastructures import MutableHeaders
 
 validate_api_key = FastAPI()
 
