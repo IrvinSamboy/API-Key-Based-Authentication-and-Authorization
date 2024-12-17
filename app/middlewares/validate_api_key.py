@@ -10,12 +10,11 @@ validate_api_key = FastAPI()
 async def index(request: Request, call_next):
     if "apiKey" in request.headers:
         apiKey = request.headers["apiKey"]
-        new_header = MutableHeaders(request._headers)
         
         app_data = next((item for item in db if item["aplicationKey"] == apiKey), None)
         
         if app_data:
-            new_header["Application-Name"] = app_data["aplicationName"]
+            request.state.application_name = app_data["aplicationName"]
             response = await call_next(request)
             return response
         else: 

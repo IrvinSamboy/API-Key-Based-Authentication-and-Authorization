@@ -7,7 +7,7 @@ app = FastAPI()
 
 @validate_api_key.get('/return_welcome_message')
 async def index(request : Request):
-    app_name = request.headers["Application-Name"]
+    app_name = request.state.application_name
     if app_name == "App 1":
         return {"message": "hi app 1"}
     if app_name == "App 2":
